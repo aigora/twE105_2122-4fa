@@ -1,10 +1,13 @@
 # [Título del trabajo]
 
-[Descripción breve del proyecto a realizar (2-3 frases).]
+
 
 ## Integrantes del equipo
 
-[Nombres, apellidos, y usuario GitHub de los integrantes del equipo.]
+* Lorena del Olmo Puyuelo[(lodelolmo)](https://github.com/lodelolmo)
+* Elena Casellas Jiménez
+* Ignacio Fernández León [(Nachofdez2708)](https://github.com/Nachofdez2708)
+* Lucas Cézar López-Sors
 
 ## Objetivos del trabajo
 
