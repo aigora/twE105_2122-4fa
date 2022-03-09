@@ -5,7 +5,7 @@
 ## Integrantes del equipo
 
 * Lorena del Olmo Puyuelo[(lodelolmo)](https://github.com/lodelolmo)
-* Elena Casellas Jiménez
+* Elena Casellas Jiménez[(elenacasellas)](https://github.com/lodelolmo)
 * Ignacio Fernández León [(Nachofdez2708)](https://github.com/Nachofdez2708)
 * Lucas Cézar López-Sors
 
