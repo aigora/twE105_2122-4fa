@@ -1,5 +1,5 @@
 # [4fanoraculous]
-
+Nuestro trabajo consistirá en un programa que hará una seríe de preguntas al usuario con respuesta a elegir y a partir de las respuestas obtenidas, leerá el futuro del usuario.
 
 
 ## Integrantes del equipo
@@ -11,4 +11,8 @@
 
 ## Objetivos del trabajo
 
-[Lista de los objetivos que se persiguen con el trabajo propuesto.]
+* Obtener una base de datos con ficheros CSV
+* Obtener resultados basados en análisis estadísticos 
+* Vincular gráficos estadísticos
+* Conseguir resultados coherentes basándonos en los datos introducidos por los usuarios
+
