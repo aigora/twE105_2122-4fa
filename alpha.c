@@ -4,6 +4,7 @@ int main()
 {
     int num;
     char letra;
+    printf("Bienvenido a el oraculo de tu vida:\n");
     printf("Seleccione una de las sigientes opciones:\n a. Salud\n b.Dinero\n c.Amor\n e.Salir\n");
     scanf ("%c", &letra);
     
