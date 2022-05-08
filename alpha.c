@@ -1,46 +1,14 @@
 #include <stdio.h>
-
 int main()
 {
-    int num;
-    char letra;
-    printf("Bienvenido a el oraculo de tu vida:\n");
-    printf("Seleccione una de las sigientes opciones:\n a. Salud\n b.Dinero\n c.Amor\n e.Salir\n");
-    scanf ("%c", &letra);
-    
-    switch(letra)
-    {
-    case 'a':
-    case 'A':
-         printf("HA SELECCIONADO LA OPCION SALUD.\n");
-         printf("Pulse un numero si desea volver al menu principal. \n");
-         scanf("%d", &num);
-         break;
-    
-    case 'b':
-    case 'B':
-         printf("HA SELECCIONADO LA OPCION DINERO.\n");
-         printf("Pulse un numero si desea volver al menu principal. \n");
-         scanf("%d", &num);
-         break;
-    
-    case 'c':
-    case 'C':
-         printf("HA SELECCIONADO LA OPCION AMOR.\n");
-         printf("Pulse un numero si desea volver al menu principal. \n");
-         scanf("%d", &num);
-         break;
-    
-    case 'e':
-    case 'E':
-         printf("SALIR\n");
-         break;
-         
-    default:
-        printf("La opcion seleccionada no existe");
-        printf("Pulse un numero si desea volver al menu principal. \n");
-        scanf("%d", &num);
-        break;
-    }
-    return 0;
+    char nombre;
+    int sexo;
+
+printf("El hombre lleva preguntandole al oraculo desde tiempos muy remotos.\nDesde tiempos inmemoriables se ha tratado de obtener respuestas fiables sobre lo que le ocurrira en el futuro.\n\n");
+printf("        Este oraculo basado en la lectura de las cartas del Tarot,\n        le ayudara a encontrar las respuestas relacionadas con sus problemas,\n        ya sean amorosos, laborales o de familia.\n\n");
+printf("!!!A CONTINUACION, CON LA AYUDA DE LOS 22 ARCANOS MAYORES, SU FUTURO SERA REVELADO ANTE USTED!!!\n\n\n");
+printf("A Continuacion Introduzca Su Nombre:\n");
+scanf("%c", &nombre);
+
+return 0;
 }
