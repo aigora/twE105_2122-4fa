@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+#define BUFF_SIZE 1024
+
+typedef struct Carta {
+    int id;
+    char *nombre;
+    char *desc;
+    char *tag;
+} Carta;
+
+Carta *cartas;
+int karma;
+char **preguntas;
+int nPreguntas;
+int nCartas;
+int *mazoMezclado;
+
+//funciones
+int cargarPreguntas(FILE *fichero);
+int construirMazo(FILE *fichero);
+int indexOf(int *indices, int cont, int num);
+void mezclarCartas (int *indices, int cont);
+int pedirSeleccion(int max);
+void retirarCarta(int *mazo, int cont,int seleccion);
+void actualizarKarma(int seleccion);
+void iniciarPreguntas();
+
+
+int main(int argc, char const *argv[])
+{
+    karma = 0;
+    //INTRODUCCION - experiancia oraculo o_0
+    char nombre;
+    int sexo;
+
+        printf("El hombre lleva preguntandole al oraculo desde tiempos muy remotos.\nDesde tiempos inmemoriables se ha tratado de obtener respuestas fiables sobre lo que le ocurrira en el futuro.\n\n");
+        printf("        Este oraculo basado en la lectura de las cartas del Tarot,\n        le ayudara a encontrar las respuestas relacionadas con sus problemas,\n        ya sean amorosos, laborales o de familia.\n\n");
+        printf("!!!A CONTINUACION, CON LA AYUDA DE LOS 22 ARCANOS MAYORES, SU FUTURO SERA REVELADO ANTE USTED!!!\n\n\n");
+        printf("A Continuacion Introduzca Su Nombre:\n");
+        scanf("%c", &nombre);
+
+
+    //CARGAR CARTAS DEL CSV - memoria dinamica
+
+    FILE *fichCartas;
+
+
+    if(fichCartas = fopen("arcanosMayores.csv", "r")){
+        nCartas = construirMazo(fichCartas);
+
+    }else{
+        perror("Error al abrir el archivo");
+    }
+
+    //PREGUNTAS - selecciona cartas sin sustitucion
+    int mazo[nCartas];
+    mezclarCartas(mazo,nCartas);
+
+    mazoMezclado = mazo;
+
+    //CARGAMOS LAS PREGUNTAS
+    FILE *fichPreguntas;
+
+    if(fichPreguntas = fopen("preguntas.txt", "r")){
+        nPreguntas = cargarPreguntas(fichPreguntas);
+    }else{
+        perror("Error al abrir el archivo");
+    }
+
+    iniciarPreguntas();
+    printf("TU KARMA ES %i\n", karma);
+    printf("Npreguntas %i\n", nPreguntas);
+    float karmaPorcentaje;
+    karmaPorcentaje = karma/nPreguntas;
+    printf("TU KARMA ES %f \n", karmaPorcentaje);
+
+    //RESULTADOS - analisis de respuestas y resultados
+
+    //RECOMENDACIONES - mas texto
+    return 0;
+}
