@@ -1,0 +1,14 @@
+Elige tu arcano para:  PROFESIONAL Y LABORAL
+-	Elige tu arcano para: AMISTADES
+-	Elige tu arcano para: SUEÑOS Y PROYECTOS
+-	Elige tu arcano para: PREOCUPACIONES INTERNAS
+-	Elige tu arcano para: CAMBIOS TRANSITORIOS
+-	Elige tu arcano para: EL PRESENTE
+-	Elige tu arcano para: AMOR
+-	Elige tu arcano para: DINERO
+-	Elige tu arcano para: SALUD
+-	Elige tu arcano para: COMUNICACIONES Y VIAJES
+-	Elige tu arcano para: PLACERES Y AMBICIONES
+-	Elige tu arcano para: FAMILIA Y AMIGOS
+
+Tirada terminada, puede ver sus resultados.
