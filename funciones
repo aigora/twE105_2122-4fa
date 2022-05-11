@@ -1,0 +1,149 @@
+//FUNCIONES
+
+int cargarPreguntas(FILE *fichero){
+    char linea[BUFF_SIZE];
+
+    int cont = 0;
+
+    while(!feof(fichero)){
+        fgets(linea, BUFF_SIZE, fichero);
+        cont++;
+    }
+
+    rewind(fichero);
+
+    preguntas = (char**) malloc(cont*sizeof(linea));
+    if(preguntas == NULL){
+        perror("No se pudo reservar memoria suficiente");
+    }
+
+    int i;
+    for ( i = 0; i < cont; i++)
+    {
+        fgets(linea, BUFF_SIZE, fichero);
+        //quitamos salto de linea '\n'
+        linea[strlen(linea)-1]=0;
+        preguntas[i] = strdup(linea);
+    }
+
+    return cont;
+
+}
+
+
+
+int construirMazo(FILE *fichero){
+    //DEFINIMOS LA LINEA
+    char linea[BUFF_SIZE];
+
+    int cont = 0;
+
+    //LEEMOS LA CANTIDAD DE LINEAS
+    while(!feof(fichero)){
+        fgets(linea, BUFF_SIZE, fichero);
+        cont++;
+    }
+
+    //REINICIAMOS EL PUNTERO AL PRINCIPIO
+    rewind(fichero);
+
+    //RESERVAMOS MEMORIA PARA CADA CARTA
+    cartas = (Carta*)malloc(cont*sizeof(Carta));
+    if(cartas == NULL){
+        perror("No se pudo reservar memoria suficiente");
+    }
+
+    int i;
+    char *tok;
+
+    //CARGAMOS LAS CARTAS
+    for (i = 0; i<cont; i++)
+    {
+
+        fgets(linea, BUFF_SIZE, fichero);
+        //LEEMOS EL ID
+        tok = strtok(linea,";");
+        cartas[i].id = atoi(tok);
+
+        //LEEMOS EL NOMBRE
+        tok = strtok(NULL,";");
+        cartas[i].nombre = strdup(tok);
+
+        //LEEMOS EL TAG
+        tok = strtok(NULL,";");
+        cartas[i].tag = strdup(tok);;
+
+        //LEEMOS LA DESCRIPCION
+        tok = strtok(NULL,";");
+        cartas[i].desc = strdup(tok);;
+    }
+    return cont;
+}
+
+int indexOf(int *indices, int cont, int num){
+    int i;
+    for (i = 0; i < cont; i++)
+    {
+        if(indices[i]==num){
+            return i;
+        }
+    }
+    return -1;
+
+}
+
+void mezclarCartas (int *indices, int cont)
+{
+    int i, num;
+
+    for (i=0; i<cont; i++)
+    {
+        while(indexOf(indices, cont, num = rand()%cont) != -1);
+        indices[i]= num;
+    }
+
+}
+
+int pedirSeleccion(int max){
+    int seleccion;
+    char linea[BUFF_SIZE];
+    char *end;
+    do
+    {
+        printf("Selecciona una carta del [0,%d]:\n", max-1);
+        //leemos una linea
+        fgets(linea,BUFF_SIZE,stdin);
+        //quitamos salto de linea '\n'
+        linea[strlen(linea)-1]=0;
+        //miramos que numero ha puesto
+        seleccion = strtol(linea, &end, 10);
+    } while ((seleccion < 0 && seleccion >=max) || strlen(end)>0);
+    return seleccion;
+}
+
+void retirarCarta(int *mazo, int cont,int seleccion){
+    int aux;
+    aux = mazo[cont-1];
+    mazo[cont-1] = mazo[seleccion];
+    mazo[seleccion] = aux;
+}
+
+void actualizarKarma(int seleccion){
+    if(strcmp(cartas[seleccion].tag, "Bueno")==0){
+        karma++;
+    }
+}
+
+void iniciarPreguntas(){
+    int i;
+    int seleccion;
+    for (i = 0; i < nPreguntas; i++)
+    {
+        printf("%s\n", preguntas[i]);
+        seleccion = pedirSeleccion(nCartas);
+        printf("Has elegido la carta %i %s\n",seleccion,cartas[mazoMezclado[seleccion]].nombre);
+        actualizarKarma(mazoMezclado[seleccion]);
+        retirarCarta(mazoMezclado,nCartas,seleccion);
+        nCartas--;
+    }
+}
