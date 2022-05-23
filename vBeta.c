@@ -249,12 +249,12 @@ int pedirSeleccion(int maxim)
     int seleccion;
     do
     {
-         printf("Selecciona una carta del [0,%d]: ", maxim-1);
+         printf("Selecciona una carta del [1,%d]: ", maxim);
          scanf("%d", &seleccion);
          seleccion = seleccion - 1;
          //printf("Ha seleccionado la carta");
     }
-    while (seleccion > 21 || seleccion < 0 );
+    while (seleccion > maxim-1 || seleccion < 0 );
 return seleccion;
 }
 
