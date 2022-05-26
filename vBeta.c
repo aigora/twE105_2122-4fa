@@ -282,7 +282,7 @@ void iniciarPreguntas(){
     int karma;
    // printf("el num de preguntas es: %d", nPreguntas);
    nCartas = numCartas;
-    for (i = 0; i < nPreguntas; i++)
+    for (i = 0; i < nPreguntas-1; i++)
     {
         printf("\n%s\n\n", preguntas[i]);
         seleccion = pedirSeleccion((nCartas));
