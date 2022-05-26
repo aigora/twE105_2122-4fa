@@ -35,6 +35,8 @@ int pedirSeleccion();
 void retirarCarta(int *mazo, int cont,int seleccion);
 int actualizarKarma(int seleccion);
 void iniciarPreguntas();
+float resultadoKarma(int karma, int numPreguntas);
+void leerDescripciones(float reskar);
 
 
 
@@ -55,7 +57,6 @@ int main(int argc, char const *argv[])
     //CARGAR CARTAS DEL CSV - memoria dinamica
 
     FILE *fichCartas;
-
 
     if(fichCartas = fopen("arcanosMayores.csv", "r")){
         nCartas = construirMazo(fichCartas);
@@ -83,15 +84,19 @@ int main(int argc, char const *argv[])
     }
 
     iniciarPreguntas();
+    float reskar = resultadoKarma(karma, nPreguntas);
+    leerDescripciones(reskar);
 
-    printf("TU KARMA ES %i\n", karma);
-    printf("Npreguntas %i\n", nPreguntas);
-    float karmaPorcentaje;
-    karmaPorcentaje = karma/nPreguntas;
-    //no funciona
-    printf("TU KARMA ES %f \n", karmaPorcentaje);
 
-    //RESULTADOS - analisis de respuestas y resultados
+
+//    printf("TU KARMA ES %i\n", karma);
+//    printf("Npreguntas %i\n", nPreguntas);
+//    float karmaPorcentaje;
+//    karmaPorcentaje = karma/nPreguntas;
+//    no funciona
+//    printf("TU KARMA ES %f \n", karmaPorcentaje);
+//
+//    RESULTADOS - analisis de respuestas y resultados
 
     return 0;
 }
@@ -324,3 +329,112 @@ void intercambiarCartas(int i, int n)
     cartas[n].desc = auxtxt;
 
 }
+
+float resultadoKarma(int karma, int numPreguntas)
+{
+    float resultado;
+    float karma1, numpreguntas1;
+    karma1 = karma;
+    numpreguntas1 = numPreguntas;
+
+resultado = karma1 / numpreguntas1;
+printf("Tu karma division es: %f", resultado);
+    return resultado;
+}
+
+void leerDescripciones(float reskar)
+{
+    char *parrafo, *d1, *d2, *d3, *d4, c;
+    char **texto;
+    FILE *descripciones;
+    descripciones = fopen("DESCRIPCIONES.txt", "r");
+    int iChar = 0, nParrafos = 0, nCaracteresParrafo = 0, nCaracteresmax = 0, nCaracteres;
+    int parrafoLargo;
+
+    while(fscanf(descripciones, "%c", &c) != EOF)
+    {
+        iChar++;
+        if(c == '\n')
+        {
+                nParrafos++;
+                if(iChar > nCaracteresmax)
+                {
+                    parrafoLargo = nParrafos;
+                    nCaracteresmax = iChar;
+                }
+            iChar = 0;
+        }
+        else if (c != '\0') {nCaracteresParrafo++;}
+    }
+
+//    printf("Caracteres max %d", nCaracteresmax);
+//    printf("\nEl numero de parrafos es: %d", nParrafos);
+//    printf("\nEl num de caracteres es: %d\n", nCaracteresParrafo);
+//    printf("\nEl parrafoLargo es: %d\n", parrafoLargo);
+
+    nCaracteresmax++;
+//    printf("\nEl num de caracteresmax es: %d\n", nCaracteresmax);
+
+    texto = (char **) malloc(nParrafos * sizeof(char) + 1);
+    if (texto == NULL){
+        printf("Error1: memoria no disponible.\n");
+        exit(-1);
+    }
+    for(int n=0; n < nParrafos; n++)
+    {
+        texto[n] = (char *) malloc(nCaracteresmax * sizeof(char) );
+        if (texto[n] == NULL){
+        printf("Error %d: memoria no disponible.\n", n);
+        exit(-1);
+    }
+    parrafo = (char *) malloc(nCaracteresmax * sizeof(char));
+
+    }
+    //printf("\nEl num de caracteresmax es: %d\n", nCaracteresmax);
+
+    int i=0;
+    int j=0;
+    fseek(descripciones, 0, SEEK_SET);
+    while(fscanf(descripciones, "%c", &c) != EOF)
+    {
+        parrafo[i]=c;
+        //printf("El caracter %i - %i es: %c", j, i, c);
+        if(c == '\n')
+        {
+            parrafo[i]= '\0';
+            //printf("\nEl parrafo antes de copiar es: %s\n", parrafo);
+            strcpy(texto[j], parrafo);
+//            printf("\nEl parrafo %i - %i es : %s", j, i, texto[j]);
+//            printf("\n\n%s", texto[j]);
+            j++;
+            i=0;
+        }
+        i++;
+    }
+    texto[j]='\0';
+    fseek(descripciones, 0, SEEK_SET);
+
+    if(reskar > 0 && reskar < 0.25)
+    {
+        printf("%s", texto[3]);
+    }
+    else if(reskar > 0.25 && reskar < 0.5)
+    {
+        printf("%s", texto[2]);
+    }
+    else if(reskar > 0.5 && reskar < 0.75)
+    {
+        printf("%s", texto[1]);
+    }
+    else if(reskar > 0.75 && reskar < 1)
+    {
+        printf("%s", texto[0]);
+    }
+
+
+
+
+
+
+    }
+
