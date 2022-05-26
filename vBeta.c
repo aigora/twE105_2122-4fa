@@ -252,14 +252,20 @@ void barajar (int cont)
 int pedirSeleccion(int maxim)
 {
     int seleccion;
+    char *end;
+    char buf[100];
     do
     {
          printf("Selecciona una carta del [1,%d]: ", maxim);
          scanf("%d", &seleccion);
          seleccion = seleccion - 1;
          //printf("Ha seleccionado la carta");
+         if(!fgets(buf, sizeof buf, stdin))
+            break;
+
+         buf[strlen(buf)-1] = '\0';
     }
-    while (seleccion > maxim-1 || seleccion < 0 );
+    while ((seleccion > maxim-1 || seleccion < 0) && (end != buf + strlen(buf)));
 return seleccion;
 }
 
