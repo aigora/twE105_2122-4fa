@@ -44,7 +44,7 @@ int main(int argc, char const *argv[])
 {
     karma = 0;
     //INTRODUCCION - experiancia oraculo o_0
-    char nombre;
+    char nombre[20]={0};
     int sexo;
 
         printf("\nEl hombre lleva preguntandole al oraculo desde tiempos inmemorables, tratando obtener respuestas a cerca del futuro.\n\n");
@@ -89,6 +89,7 @@ int main(int argc, char const *argv[])
 
 
 
+
 //    printf("TU KARMA ES %i\n", karma);
 //    printf("Npreguntas %i\n", nPreguntas);
 //    float karmaPorcentaje;
@@ -97,6 +98,22 @@ int main(int argc, char const *argv[])
 //    printf("TU KARMA ES %f \n", karmaPorcentaje);
 //
 //    RESULTADOS - analisis de respuestas y resultados
+
+FILE *ficheroresultado;
+
+ficheroresultado=fopen("resultadokarma.csv","a");
+    if(ficheroresultado==NULL){
+		printf("Error al abrir el archivo resultado\n");
+		return -1;
+		}
+		else{
+
+				fprintf(ficheroresultado,"%s; %.2f\n", &nombre,reskar);
+
+    			fclose(ficheroresultado);
+
+			}
+
 
     return 0;
 }
