@@ -47,6 +47,7 @@ int main(int argc, char const *argv[])
     char nombre[20]={0};
     int sexo;
 
+        printf("4FANORACULOUS, EL ORACULO QUE TODO LO SABE...PRUEBALO Y LO COMPROBARAS!\n\n\n");
         printf("\nEl hombre lleva preguntandole al oraculo desde tiempos inmemorables, tratando obtener respuestas a cerca del futuro.\n\n");
         printf("        Este oraculo basado en la lectura de las cartas del Tarot,\n        le ayudara a encontrar respuesta a sus problemas,\n        tanto amorosos, laborales como familiares.\n\n");
         printf("!!!A CONTINUACION, CON LA AYUDA DE LOS 22 ARCANOS MAYORES, SU FUTURO SERA REVELADO ANTE USTED!!!\n\n\n");
